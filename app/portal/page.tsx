@@ -1,9 +1,15 @@
 import Link from "next/link";
 import { requireAuthenticatedUser } from "@/lib/auth";
-import { invoiceTotals, listInvoices, listStatements } from "@/lib/invoices";
+import {
+  getVendorProfile,
+  invoiceTotals,
+  listInvoices,
+  listStatements
+} from "@/lib/invoices";
 
 export default async function PortalHomePage() {
   const username = await requireAuthenticatedUser();
+  const profile = getVendorProfile();
   const totals = invoiceTotals();
   const invoices = listInvoices().slice(0, 2);
   const statements = listStatements().slice(0, 5);
@@ -12,7 +18,7 @@ export default async function PortalHomePage() {
     <main className="shell">
       <header className="site-header">
         <Link href="/portal" className="site-brand">
-          <p className="site-brand__title">Roam Vendor Billing Portal</p>
+          <p className="site-brand__title">{profile.portalName}</p>
           <p className="site-brand__subtitle">Signed in as {username}</p>
         </Link>
 
@@ -29,13 +35,9 @@ export default async function PortalHomePage() {
       </header>
 
       <section className="panel">
-        <span className="hero__eyebrow">Account Dashboard</span>
-        <h1>Active service account for Lakeside Towers HOA</h1>
-        <p>
-          This protected account shows outstanding service invoices generated
-          under the customer service agreements on file. Use the invoices page to
-          download each invoice PDF.
-        </p>
+        <span className="hero__eyebrow">{profile.heroEyebrow}</span>
+        <h1>{profile.dashboardTitle}</h1>
+        <p>{profile.dashboardDescription}</p>
       </section>
 
       <section className="grid grid--three" style={{ marginTop: 24 }}>
@@ -69,7 +71,7 @@ export default async function PortalHomePage() {
       </section>
 
       <section className="panel">
-        <h2>Recent invoice activity</h2>
+        <h2>Recent {profile.serviceCategory} invoice activity</h2>
         <div className="grid grid--two">
           {invoices.map((invoice) => (
             <article className="invoice-card" key={invoice.id}>

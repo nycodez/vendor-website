@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { redirectIfAuthenticated } from "@/lib/auth";
+import { getVendorProfile } from "@/lib/invoices";
 
 export default async function LoginPage({
   searchParams
@@ -11,15 +12,17 @@ export default async function LoginPage({
   await redirectIfAuthenticated();
 
   const invalidCredentials = searchParams?.error === "invalid_credentials";
+  const profile = getVendorProfile();
 
   return (
     <main className="login-wrap">
       <section className="login-card">
-        <span className="hero__eyebrow">Vendor Access</span>
-        <h1>Sign in to the billing portal</h1>
+        <span className="hero__eyebrow">{profile.heroEyebrow}</span>
+        <h1>Sign in to {profile.portalName}</h1>
         <p>
-          Use the customer account credentials provided in the Vercel environment
-          variables to review invoices and download PDF copies.
+          Use the configured portal credentials to review{" "}
+          {profile.serviceCategory} invoices and download PDF copies for{" "}
+          {profile.vendorName}.
         </p>
 
         {invalidCredentials ? (

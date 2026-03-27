@@ -1,9 +1,10 @@
 import Link from "next/link";
 import { requireAuthenticatedUser } from "@/lib/auth";
-import { listInvoices, listStatements } from "@/lib/invoices";
+import { getVendorProfile, listInvoices, listStatements } from "@/lib/invoices";
 
 export default async function InvoicesPage() {
   await requireAuthenticatedUser();
+  const profile = getVendorProfile();
   const invoices = listInvoices();
   const statements = listStatements();
 
@@ -11,9 +12,9 @@ export default async function InvoicesPage() {
     <main className="shell">
       <header className="site-header">
         <Link href="/portal" className="site-brand">
-          <p className="site-brand__title">Invoice Center</p>
+          <p className="site-brand__title">{profile.vendorName} Invoice Center</p>
           <p className="site-brand__subtitle">
-            Protected billing resources and downloadable service invoices
+            Protected billing resources and downloadable {profile.serviceCategory} invoices
           </p>
         </Link>
 
@@ -31,7 +32,7 @@ export default async function InvoicesPage() {
 
       <section className="panel">
         <span className="hero__eyebrow">Invoice Downloads</span>
-        <h1>Service invoices ready for retrieval</h1>
+        <h1>{profile.vendorName} invoices ready for retrieval</h1>
         <p>
           Each invoice includes a stable direct download link. The recommended
           browser automation target URL is <code>/portal/invoices</code> and the

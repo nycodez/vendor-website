@@ -1,20 +1,17 @@
 import Link from "next/link";
-import { invoiceTotals, listInvoices } from "@/lib/invoices";
+import { getVendorProfile, invoiceTotals, listInvoices } from "@/lib/invoices";
 
 export default function HomePage() {
+  const profile = getVendorProfile();
   const totals = invoiceTotals();
   const invoices = listInvoices();
 
   return (
     <main className="shell">
       <section className="hero">
-        <span className="hero__eyebrow">Vendor Portal Demo</span>
-        <h1>Authenticated vendor billing website for browser automation testing.</h1>
-        <p>
-          This mock portal is designed to behave like a real service vendor site:
-          operators log in with a username and password, land on a protected account
-          dashboard, and download invoice PDFs from a stable invoice listing.
-        </p>
+        <span className="hero__eyebrow">{profile.heroEyebrow}</span>
+        <h1>{profile.heroTitle}</h1>
+        <p>{profile.heroDescription}</p>
         <div className="hero__actions">
           <Link className="button" href="/login">
             Sign In To Portal
@@ -52,6 +49,10 @@ export default function HomePage() {
           The portal intentionally includes stable ids and classes so the Roam
           browser automation feature can target it reliably.
         </p>
+        <div className="callout callout--info" style={{ marginTop: 16 }}>
+          Active profile: <strong>{profile.vendorName}</strong> via{" "}
+          <code>VENDOR_PROFILE={profile.key}</code>
+        </div>
         <div className="grid grid--two">
           <article className="invoice-card">
             <h3>Login page</h3>
@@ -68,7 +69,7 @@ export default function HomePage() {
             </ul>
           </article>
           <article className="invoice-card">
-            <h3>Invoice page</h3>
+            <h3>{profile.serviceCategory} invoice page</h3>
             <ul className="line-items">
               <li>
                 Invoice list rows: <code>.vendor-invoice-row</code>
@@ -85,9 +86,10 @@ export default function HomePage() {
       </section>
 
       <section className="panel">
-        <h2>Current service invoices</h2>
+        <h2>{profile.vendorName} invoices</h2>
         <p>
-          These are the mock invoices that will appear after authentication.
+          These are the seeded invoices that will appear after authentication for
+          the active vendor profile.
         </p>
         <div className="grid grid--three">
           {invoices.map((invoice) => (

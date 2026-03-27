@@ -26,9 +26,16 @@ Copy `.env.example` into `.env.local` for local testing.
 
 Required values:
 
+- `VENDOR_PROFILE`
 - `VENDOR_PORTAL_USERNAME`
 - `VENDOR_PORTAL_PASSWORD`
 - `VENDOR_PORTAL_SESSION_SECRET`
+
+Available profile keys:
+
+- `landscaping`
+- `plumber`
+- `doorking`
 
 ## Local run
 
@@ -74,6 +81,7 @@ Invoice page:
 
 If no environment variables are set, the app falls back to:
 
+- profile: `landscaping`
 - username: `portal-demo`
 - password: `demo-password-2026`
 

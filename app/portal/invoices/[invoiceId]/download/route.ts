@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { PDFDocument, StandardFonts, rgb } from "pdf-lib";
 import { requireAuthenticatedUser } from "@/lib/auth";
-import { getInvoiceById } from "@/lib/invoices";
+import { getInvoiceById, getVendorProfile } from "@/lib/invoices";
 
 function money(amount: number): string {
   return amount.toLocaleString("en-US", {
@@ -15,6 +15,7 @@ export async function GET(
   { params }: { params: { invoiceId: string } }
 ) {
   await requireAuthenticatedUser();
+  const profile = getVendorProfile();
 
   const invoice = getInvoiceById(params.invoiceId);
   if (!invoice) {
@@ -30,7 +31,7 @@ export async function GET(
   const fontBold = await pdf.embedFont(StandardFonts.HelveticaBold);
 
   let y = 738;
-  page.drawText("Roam Vendor Services", {
+  page.drawText(profile.vendorName, {
     x: 48,
     y,
     size: 22,
