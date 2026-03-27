@@ -8,8 +8,8 @@ export const SESSION_COOKIE_NAME = "vendor_portal_session";
 
 function configuredCredentials() {
   return {
-    username: process.env.VENDOR_PORTAL_USERNAME || "portal-demo",
-    password: process.env.VENDOR_PORTAL_PASSWORD || "demo-password-2026"
+    username: process.env.VENDOR_PORTAL_USERNAME || "landscaping-demo",
+    password: process.env.VENDOR_PORTAL_PASSWORD || "Roam2023"
   };
 }
 

@@ -82,7 +82,7 @@ Invoice page:
 If no environment variables are set, the app falls back to:
 
 - profile: `landscaping`
-- username: `portal-demo`
-- password: `demo-password-2026`
+- username: `landscaping-demo`
+- password: `Roam2023`
 
 These defaults are for development only.
