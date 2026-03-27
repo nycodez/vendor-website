@@ -1,0 +1,396 @@
+:root {
+  color-scheme: light;
+  --bg: #f5f7fb;
+  --surface: #ffffff;
+  --surface-alt: #edf3ff;
+  --text: #122033;
+  --muted: #52627a;
+  --line: rgba(18, 32, 51, 0.12);
+  --brand: #0f5ea8;
+  --brand-strong: #0b4b85;
+  --success: #13795b;
+  --danger: #b42318;
+  --shadow: 0 18px 48px rgba(15, 31, 61, 0.12);
+  font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  min-height: 100%;
+  background:
+    radial-gradient(circle at top left, rgba(15, 94, 168, 0.14), transparent 28%),
+    linear-gradient(180deg, #f8fbff 0%, var(--bg) 58%, #eef3fb 100%);
+  color: var(--text);
+}
+
+body {
+  min-height: 100vh;
+}
+
+a {
+  color: inherit;
+}
+
+code {
+  padding: 2px 6px;
+  border-radius: 8px;
+  background: rgba(15, 94, 168, 0.08);
+  color: var(--brand-strong);
+  font-size: 0.95em;
+}
+
+.shell {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 32px 20px 56px;
+}
+
+.hero,
+.panel,
+.stats,
+.invoice-table,
+.invoice-card,
+.login-card {
+  background: rgba(255, 255, 255, 0.94);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow);
+}
+
+.hero,
+.panel,
+.login-card {
+  border-radius: 28px;
+}
+
+.hero {
+  padding: 36px;
+}
+
+.hero__eyebrow {
+  display: inline-flex;
+  padding: 8px 12px;
+  border-radius: 999px;
+  background: rgba(15, 94, 168, 0.1);
+  color: var(--brand);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.hero h1,
+.panel h1,
+.panel h2,
+.login-card h1 {
+  margin: 16px 0 12px;
+  line-height: 1.05;
+}
+
+.hero h1 {
+  font-size: clamp(2.4rem, 5vw, 4rem);
+  max-width: 780px;
+}
+
+.hero p,
+.panel p,
+.login-card p,
+.muted {
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.hero__actions,
+.stack,
+.toolbar,
+.panel__actions,
+.invoice-card__meta,
+.detail-grid {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.button,
+.button--secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border-radius: 999px;
+  padding: 12px 18px;
+  font-weight: 700;
+  text-decoration: none;
+  border: 1px solid transparent;
+  cursor: pointer;
+}
+
+.button {
+  background: var(--brand);
+  color: white;
+}
+
+.button:hover {
+  background: var(--brand-strong);
+}
+
+.button--secondary {
+  background: transparent;
+  border-color: rgba(15, 94, 168, 0.24);
+  color: var(--brand);
+}
+
+.grid {
+  display: grid;
+  gap: 20px;
+}
+
+.grid--three {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.grid--two {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.statement-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.stats,
+.panel,
+.invoice-card,
+.login-card,
+.invoice-table {
+  padding: 24px;
+}
+
+.stats {
+  border-radius: 22px;
+}
+
+.stats__label {
+  margin: 0 0 8px;
+  color: var(--muted);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.stats__value {
+  margin: 0;
+  font-size: 1.9rem;
+  font-weight: 800;
+}
+
+.panel {
+  margin-top: 24px;
+}
+
+.site-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.site-brand {
+  text-decoration: none;
+}
+
+.site-brand__title {
+  margin: 0;
+  font-size: 1.2rem;
+  font-weight: 800;
+}
+
+.site-brand__subtitle {
+  margin: 4px 0 0;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.login-wrap {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+}
+
+.login-card {
+  width: min(100%, 460px);
+}
+
+.form-grid {
+  display: grid;
+  gap: 16px;
+  margin-top: 20px;
+}
+
+.field {
+  display: grid;
+  gap: 8px;
+}
+
+.field label {
+  font-weight: 700;
+}
+
+.field input {
+  width: 100%;
+  border-radius: 14px;
+  border: 1px solid rgba(18, 32, 51, 0.16);
+  padding: 14px 16px;
+  font-size: 16px;
+  background: white;
+}
+
+.field input:focus {
+  outline: 2px solid rgba(15, 94, 168, 0.18);
+  border-color: var(--brand);
+}
+
+.callout {
+  padding: 14px 16px;
+  border-radius: 14px;
+  font-size: 14px;
+}
+
+.callout--error {
+  background: rgba(180, 35, 24, 0.08);
+  color: var(--danger);
+}
+
+.callout--info {
+  background: rgba(15, 94, 168, 0.08);
+  color: var(--brand-strong);
+}
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: rgba(19, 121, 91, 0.1);
+  color: var(--success);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.invoice-table {
+  margin-top: 20px;
+  border-radius: 22px;
+  overflow: hidden;
+}
+
+.invoice-table table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.invoice-table th,
+.invoice-table td {
+  padding: 14px 12px;
+  border-bottom: 1px solid rgba(18, 32, 51, 0.08);
+  text-align: left;
+  vertical-align: top;
+}
+
+.invoice-table th {
+  color: var(--muted);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.invoice-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.invoice-download-link,
+.vendor-download-link,
+.vendor-invoice-link,
+.vendor-statement-download-link {
+  color: var(--brand);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.invoice-download-link:hover,
+.vendor-download-link:hover,
+.vendor-invoice-link:hover,
+.vendor-statement-download-link:hover {
+  text-decoration: underline;
+}
+
+.statement-card {
+  background:
+    linear-gradient(135deg, rgba(15, 94, 168, 0.05), rgba(255, 255, 255, 0.95));
+}
+
+.invoice-card {
+  border-radius: 22px;
+}
+
+.invoice-card h3 {
+  margin: 0 0 10px;
+}
+
+.invoice-card__meta {
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.detail-grid {
+  margin-top: 20px;
+}
+
+.detail-grid > div {
+  min-width: 180px;
+}
+
+.detail-grid strong {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 12px;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.line-items {
+  margin-top: 20px;
+  padding-left: 18px;
+  color: var(--muted);
+}
+
+.line-items li + li {
+  margin-top: 10px;
+}
+
+@media (max-width: 900px) {
+  .grid--three,
+  .grid--two,
+  .statement-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .site-header,
+  .hero__actions {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .invoice-table {
+    overflow-x: auto;
+  }
+}
